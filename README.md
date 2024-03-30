@@ -75,6 +75,8 @@ Users can also explore personalized recommendations based on content preferences
 | `password`     | `string` | **Required**. User's password | "Pass123"       |
 | `email`        | `string` | **Required**. User's email | "john@example.com"|
 
+<br>
+
 ![Register](https://i.ibb.co/dQhXFVt/Register.png)
 
 #### 2. Login
