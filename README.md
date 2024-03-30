@@ -65,7 +65,7 @@ Users can also explore personalized recommendations based on content preferences
 
 #### 1. Register
 
-```http
+```
   POST {identity_service}/register
 ```
 
@@ -79,7 +79,7 @@ Users can also explore personalized recommendations based on content preferences
 
 #### 2. Login
 
-```http
+```
   POST {identity_service}/token
 ```
 
@@ -90,7 +90,7 @@ Users can also explore personalized recommendations based on content preferences
 
 #### 3. Get All Books
 
-```http
+```
   GET /user-books
 ```
 
@@ -100,7 +100,7 @@ Users can also explore personalized recommendations based on content preferences
 
 #### 4. Get Book By Id
 
-```http
+```
   GET /user-books/book/${id}
 ```
 
@@ -110,7 +110,7 @@ Users can also explore personalized recommendations based on content preferences
 
 #### 5. Get All Authors
 
-```http
+```
   GET /authors
 ```
 
@@ -120,7 +120,7 @@ Users can also explore personalized recommendations based on content preferences
 
 #### 6. Get Book By Author
 
-```http
+```
   GET /authors/${id}
 ```
 
@@ -130,7 +130,7 @@ Users can also explore personalized recommendations based on content preferences
 
 #### 7. Get All Genres
 
-```http
+```
   GET /genres
 ```
 
@@ -140,7 +140,7 @@ Users can also explore personalized recommendations based on content preferences
 
 #### 8. Get Book By Genre
 
-```http
+```
   GET /genres/${id}
 ```
 
@@ -150,7 +150,7 @@ Users can also explore personalized recommendations based on content preferences
 
 #### 9. Get My Books
 
-```http
+```
   GET /my-books
 ```
 
@@ -158,9 +158,9 @@ Users can also explore personalized recommendations based on content preferences
 | :---------- | :------- | :-------------------------- |:----------------- |
 | `username`  | `string` | **Required**. User's username | "john@example.com" |
 
-#### Post Books
+#### 10. Post Books
 
-```http
+```
   POST /my-books
 ```
 
@@ -171,9 +171,9 @@ Users can also explore personalized recommendations based on content preferences
 | `pagesRead`    | `number` | **Required**. Pages read by the user | 100        |
 | `status`       | `string` | **Required**. Reading status of the book | "Reading" |
 
-#### 10. Delete Books
+#### 11. Delete Books
 
-```http
+```
   DELETE /user-books
 ```
 
