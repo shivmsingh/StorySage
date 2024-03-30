@@ -85,6 +85,7 @@ Users can also explore personalized recommendations based on content preferences
 
 ![Register](https://i.ibb.co/dQhXFVt/Register.png)
 
+
 #### 2. Login
 
 ```
@@ -104,7 +105,7 @@ Users can also explore personalized recommendations based on content preferences
 ```
   GET ${book_catalog}/user-books
 ```
-![GET All Books](https://i.ibb.co/dD3xXyN/Get-All-Books.png)
+<img src="https://i.ibb.co/dD3xXyN/Get-All-Books.png" alt="Get-All-Books" width="50%" height="50%" />
 
 #### 4. Get Book By Id
 
@@ -116,6 +117,7 @@ Users can also explore personalized recommendations based on content preferences
 | :------------- | :------- | :---------------------------- |
 | `id`           | `string` | **Required**. Id of book to fetch |
 
+<img src="https://i.ibb.co/JvhbxzS/Get-Book.png" alt="Get-Book" width="50%" height="50%" />
 
 #### 5. Get All Authors
 
