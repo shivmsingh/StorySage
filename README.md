@@ -250,6 +250,266 @@ Sequence Diagram
 | :------------- | :------- | :---------------------------- |
 | `pageSize`           | `int` | Size of Page |
 | `pageNo`           | `int` | Page Number (0 based) |
+Response
+```json
+  [
+    {
+        "bookId": 13,
+        "title": "The Giving Tree",
+        "series": "No series available",
+        "authors": [
+            {
+                "id": 17,
+                "name": "Shel Silverstein"
+            }
+        ],
+        "rating": 4.37,
+        "description": "\"Once there was a tree...and she loved a little boy.\"So begins a story of unforgettable perception, beautifully written and illustrated by the gifted and versatile Shel Silverstein.Every day the boy would come to the tree to eat her apples, swing from her",
+        "language": "English",
+        "genres": [
+            {
+                "id": 12,
+                "name": "Childrens"
+            },
+            {
+                "id": 13,
+                "name": "Classics"
+            },
+            {
+                "id": 4,
+                "name": "Fantasy"
+            },
+            {
+                "id": 5,
+                "name": "Fiction"
+            },
+            {
+                "id": 49,
+                "name": "Juvenile"
+            },
+            {
+                "id": 50,
+                "name": "Kids"
+            },
+            {
+                "id": 51,
+                "name": "Picture Books"
+            },
+            {
+                "id": 52,
+                "name": "Poetry"
+            },
+            {
+                "id": 53,
+                "name": "Short Stories"
+            },
+            {
+                "id": 10,
+                "name": "Young Adult"
+            }
+        ],
+        "characters": [
+            "No characters available"
+        ],
+        "publisher": "HarperCollins Publishers",
+        "awards": [
+            "No awards"
+        ],
+        "numRating": 905731,
+        "likedPercent": 94,
+        "setting": [
+            "No Setting Available"
+        ],
+        "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1174210942l/370493._SX318_.jpg",
+        "status": null,
+        "totalPages": 0,
+        "pagesRead": 0,
+        "progress": 0.0
+    },
+    {
+        "bookId": 14,
+        "title": "Wuthering Heights",
+        "series": "No series available",
+        "authors": [
+            {
+                "id": 18,
+                "name": "Emily Brontë"
+            },
+            {
+                "id": 19,
+                "name": "Richard J. Dunn"
+            }
+        ],
+        "rating": 3.86,
+        "description": "You can find the redesigned cover of this edition HERE.This best-selling Norton Critical Edition is based on the 1847 first edition of the novel. For the Fourth Edition, the editor has collated the 1847 text with several modern editions and has corrected ",
+        "language": "English",
+        "genres": [
+            {
+                "id": 54,
+                "name": "19th Century"
+            },
+            {
+                "id": 25,
+                "name": "Classic Literature"
+            },
+            {
+                "id": 13,
+                "name": "Classics"
+            },
+            {
+                "id": 5,
+                "name": "Fiction"
+            },
+            {
+                "id": 55,
+                "name": "Gothic"
+            },
+            {
+                "id": 18,
+                "name": "Historical"
+            },
+            {
+                "id": 19,
+                "name": "Historical Fiction"
+            },
+            {
+                "id": 20,
+                "name": "Literature"
+            },
+            {
+                "id": 21,
+                "name": "Novels"
+            },
+            {
+                "id": 7,
+                "name": "Romance"
+            }
+        ],
+        "characters": [
+            "Heathcliff",
+            "Catherine Earnshaw",
+            "Edgar Linton",
+            "Isabella Linton",
+            "Hindley Earnshaw",
+            "Ellen (Nelly) Dean",
+            "Mr. Lockwood",
+            "Hareton Earnshaw",
+            "Catherine Linton",
+            "Linton Heathcliff"
+        ],
+        "publisher": "Norton",
+        "awards": [
+            "No awards"
+        ],
+        "numRating": 1342664,
+        "likedPercent": 88,
+        "setting": [
+            "England",
+            "Yorkshire Dales"
+        ],
+        "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1587655304l/6185._SY475_.jpg",
+        "status": null,
+        "totalPages": 0,
+        "pagesRead": 0,
+        "progress": 0.0
+    },
+    {
+        "bookId": 15,
+        "title": "The Da Vinci Code",
+        "series": "Robert Langdon",
+        "authors": [
+            {
+                "id": 20,
+                "name": "Dan Brown"
+            }
+        ],
+        "rating": 3.86,
+        "description": "ISBN 9780307277671 moved to this edition.While in Paris, Harvard symbologist Robert Langdon is awakened by a phone call in the dead of the night. The elderly curator of the Louvre has been murdered inside the museum, his body covered in baffling symbols. ",
+        "language": "English",
+        "genres": [
+            {
+                "id": 24,
+                "name": "Adult"
+            },
+            {
+                "id": 2,
+                "name": "Adventure"
+            },
+            {
+                "id": 56,
+                "name": "Crime"
+            },
+            {
+                "id": 5,
+                "name": "Fiction"
+            },
+            {
+                "id": 19,
+                "name": "Historical Fiction"
+            },
+            {
+                "id": 57,
+                "name": "Mystery"
+            },
+            {
+                "id": 58,
+                "name": "Mystery Thriller"
+            },
+            {
+                "id": 21,
+                "name": "Novels"
+            },
+            {
+                "id": 59,
+                "name": "Suspense"
+            },
+            {
+                "id": 60,
+                "name": "Thriller"
+            }
+        ],
+        "characters": [
+            "Sophie Neveu",
+            "Robert Langdon",
+            "Sir Leigh Teabing",
+            "Silas (The Da Vinci Code)",
+            "Bezu Fache",
+            "Jerome Collet",
+            "Manuel Aringarosa",
+            "Rémy Legaludec",
+            "André Vernet"
+        ],
+        "publisher": "Anchor",
+        "awards": [
+            "British Book Award for Book of the Year (2005)",
+            "Book Sense Book of the Year Award for Adult Fiction (2004)",
+            "\"Humos Gouden Bladwijzer (2004)\"",
+            "Zilveren Vingerafdruk (2004)",
+            "\"The Flume: New Hampshire Teen Readers Choice Award (2006)\"",
+            "Teen Buckeye Book Awar"
+        ],
+        "numRating": 1933446,
+        "likedPercent": 89,
+        "setting": [
+            "England",
+            "England",
+            "France",
+            "London",
+            "Paris (France)",
+            "United Kingdom"
+        ],
+        "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1579621267l/968.jpg",
+        "status": null,
+        "totalPages": 0,
+        "pagesRead": 0,
+        "progress": 0.0
+    }
+]
+```
+
+Sequence Diagram
+<br>
+<br>
 <img src="https://i.ibb.co/dD3xXyN/Get-All-Books.png" alt="Get-All-Books" width="50%" height="50%" />
 
 #### 7. Get Book By Id
@@ -262,6 +522,112 @@ Sequence Diagram
 | :------------- | :------- | :---------------------------- |
 | `id`           | `string` | **Required**. Id of book to fetch |
 
+Response
+```json
+  {
+    "bookId": 33,
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "series": "Harry Potter",
+    "authors": [
+        {
+            "id": 2,
+            "name": "J.K. Rowling"
+        },
+        {
+            "id": 3,
+            "name": "Mary GrandPré"
+        }
+    ],
+    "rating": 4.47,
+    "description": "Harry Potter's life is miserable. His parents are dead and he's stuck with his heartless relatives, who force him to live in a tiny closet under the stairs. But his fortune changes when he receives a letter that tells him the truth about himself: he's a w",
+    "language": "English",
+    "genres": [
+        {
+            "id": 2,
+            "name": "Adventure"
+        },
+        {
+            "id": 11,
+            "name": "Audiobook"
+        },
+        {
+            "id": 12,
+            "name": "Childrens"
+        },
+        {
+            "id": 13,
+            "name": "Classics"
+        },
+        {
+            "id": 4,
+            "name": "Fantasy"
+        },
+        {
+            "id": 5,
+            "name": "Fiction"
+        },
+        {
+            "id": 14,
+            "name": "Magic"
+        },
+        {
+            "id": 15,
+            "name": "Middle Grade"
+        },
+        {
+            "id": 16,
+            "name": "Science Fiction Fantasy"
+        },
+        {
+            "id": 10,
+            "name": "Young Adult"
+        }
+    ],
+    "characters": [
+        "Draco Malfoy",
+        "Ron Weasley",
+        "Petunia Dursley",
+        "Vernon Dursley",
+        "Dudley Dursley",
+        "Severus Snape",
+        "Quirinus Quirrell",
+        "Rubeus Hagrid",
+        "Lord Voldemort",
+        "Minerva McGonagall",
+        "Neville Longbottom",
+        "Fred Weasley",
+        "George Weasley",
+        "Percy Weasley",
+        "Filius Flitwick",
+        "Pomona Sprou"
+    ],
+    "publisher": "Scholastic Inc",
+    "awards": [
+        "\"Mythopoeic Fantasy Award for Childrens Literature (2008)\"",
+        "\"British Book Award for Childrens Book of the Year (1998)\"",
+        "Prijs van de Nederlandse Kinderjury for 6-9 jaar en 10-12 jaar (2002)",
+        "American Booksellers Book Of The Year  Award for Children (1999)"
+    ],
+    "numRating": 7048471,
+    "likedPercent": 96,
+    "setting": [
+        "England",
+        "Hogwarts School of Witchcraft and Wizardry (United Kingdom)",
+        "Hogwarts School of Witchcraft and Wizardry (United Kingdom)",
+        "London"
+    ],
+    "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1474154022l/3._SY475_.jpg",
+    "status": null,
+    "totalPages": 0,
+    "pagesRead": 0,
+    "progress": 0.0
+}
+```
+
+Sequence Diagram
+<br>
+<br>
+
 <img src="https://i.ibb.co/JvhbxzS/Get-Book.png" alt="Get-Book" width="50%" height="50%" />
 
 #### 8. Get All Authors
@@ -269,7 +635,55 @@ Sequence Diagram
 ```
   GET ${book_catalog}/authors
 ```
+Response
+```json
+ [
+    {
+        "id": 1,
+        "name": "Suzanne Collins"
+    },
+    {
+        "id": 2,
+        "name": "J.K. Rowling"
+    },
+    {
+        "id": 3,
+        "name": "Mary GrandPré"
+    },
+    {
+        "id": 4,
+        "name": "Harper Lee"
+    },
+    {
+        "id": 5,
+        "name": "Jane Austen"
+    },
+    {
+        "id": 6,
+        "name": "Anna Quindlen"
+    },
+    {
+        "id": 7,
+        "name": "Stephenie Meyer"
+    },
+    {
+        "id": 8,
+        "name": "Markus Zusak"
+    },
+    {
+        "id": 9,
+        "name": "George Orwell"
+    },
+    {
+        "id": 10,
+        "name": "Russell Baker"
+    }
+]
+```
 
+Sequence Diagram
+<br>
+<br>
 <img src="https://i.ibb.co/wrnsRc9/Get-All-Authors.png" alt="Get-All-Authors" width="50%" height="50%" />
 
 #### 9. Get Books By Author
@@ -284,6 +698,186 @@ Sequence Diagram
 | `pageSize`           | `int` | Size of Page |
 | `pageNo`           | `int` | Page Number (0 based) |
 
+Response
+```json
+  [
+    {
+        "bookId": 7,
+        "title": "Animal Farm",
+        "series": "No series available",
+        "authors": [
+            {
+                "id": 9,
+                "name": "George Orwell"
+            },
+            {
+                "id": 10,
+                "name": "Russell Baker"
+            }
+        ],
+        "rating": 3.95,
+        "description": "Librarian's note: There is an Alternate Cover Edition for this edition of this book here.A farm is taken over by its overworked, mistreated animals. With flaming idealism and stirring slogans, they set out to create a paradise of progress, justice, and eq",
+        "language": "English",
+        "genres": [
+            {
+                "id": 13,
+                "name": "Classics"
+            },
+            {
+                "id": 3,
+                "name": "Dystopia"
+            },
+            {
+                "id": 4,
+                "name": "Fantasy"
+            },
+            {
+                "id": 5,
+                "name": "Fiction"
+            },
+            {
+                "id": 20,
+                "name": "Literature"
+            },
+            {
+                "id": 21,
+                "name": "Novels"
+            },
+            {
+                "id": 36,
+                "name": "Politics"
+            },
+            {
+                "id": 22,
+                "name": "Read For School"
+            },
+            {
+                "id": 23,
+                "name": "School"
+            },
+            {
+                "id": 8,
+                "name": "Science Fiction"
+            }
+        ],
+        "characters": [
+            "Snowball",
+            "Napoleon",
+            "Clover",
+            "Boxer",
+            "Old Major",
+            "Muriel",
+            "Jones",
+            "Squealer",
+            "Moses the Raven",
+            "Benjamin"
+        ],
+        "publisher": "Signet Classics",
+        "awards": [
+            "Prometheus Hall of Fame Award (2011)",
+            "Retro Hugo Award for Best Novella (1996)"
+        ],
+        "numRating": 2740713,
+        "likedPercent": 91,
+        "setting": [
+            "England",
+            "United Kingdom"
+        ],
+        "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1325861570l/170448.jpg",
+        "status": null,
+        "totalPages": 0,
+        "pagesRead": 0,
+        "progress": 0.0
+    },
+    {
+        "bookId": 81,
+        "title": "1984",
+        "series": "No series available",
+        "authors": [
+            {
+                "id": 9,
+                "name": "George Orwell"
+            }
+        ],
+        "rating": 4.19,
+        "description": "Among the seminal texts of the 20th century, Nineteen Eighty-Four is a rare work that grows more haunting as its futuristic purgatory becomes more real. Published in 1949, the book offers political satirist George Orwell's nightmarish vision of a totalita",
+        "language": "English",
+        "genres": [
+            {
+                "id": 24,
+                "name": "Adult"
+            },
+            {
+                "id": 13,
+                "name": "Classics"
+            },
+            {
+                "id": 3,
+                "name": "Dystopia"
+            },
+            {
+                "id": 4,
+                "name": "Fantasy"
+            },
+            {
+                "id": 5,
+                "name": "Fiction"
+            },
+            {
+                "id": 20,
+                "name": "Literature"
+            },
+            {
+                "id": 21,
+                "name": "Novels"
+            },
+            {
+                "id": 36,
+                "name": "Politics"
+            },
+            {
+                "id": 23,
+                "name": "School"
+            },
+            {
+                "id": 8,
+                "name": "Science Fiction"
+            }
+        ],
+        "characters": [
+            "Winston Smith",
+            "Big Brother",
+            "\"OBrien\"",
+            "Emmanuel Goldstein",
+            "Tom Parsons",
+            "Syme",
+            "Julia"
+        ],
+        "publisher": "Houghton Mifflin Harcourt",
+        "awards": [
+            "Prometheus Hall of Fame Award (1984)",
+            "Locus Award Nominee for All-Time Best Science Fiction Novel (1987)"
+        ],
+        "numRating": 3140442,
+        "likedPercent": 94,
+        "setting": [
+            "England",
+            "England",
+            "London",
+            "United Kingdom"
+        ],
+        "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1532714506l/40961427._SX318_.jpg",
+        "status": null,
+        "totalPages": 0,
+        "pagesRead": 0,
+        "progress": 0.0
+    }
+]
+```
+
+Sequence Diagram
+<br>
+<br>
 <img src="https://i.ibb.co/N3zTmWD/Get-Books-By-Author.png" alt="Get-Books-By-Author" width="50%" height="50%" />
 
 
