@@ -125,8 +125,9 @@ Users can also explore personalized recommendations based on content preferences
   GET ${book_catalog}/authors
 ```
 
+<img src="https://i.ibb.co/wrnsRc9/Get-All-Authors.png" alt="Get-All-Authors" width="50%" height="50%" />
 
-#### 6. Get Book By Author
+#### 6. Get Books By Author
 
 ```
   GET ${book_catalog}/authors/${id}
@@ -136,6 +137,8 @@ Users can also explore personalized recommendations based on content preferences
 | :------------- | :------- | :---------------------------- |
 | `id`           | `string` | **Required**. Id of author to fetch |
 
+<img src="https://i.ibb.co/N3zTmWD/Get-Books-By-Author.png" alt="Get-Books-By-Author" width="50%" height="50%" />
+
 
 #### 7. Get All Genres
 
@@ -143,8 +146,9 @@ Users can also explore personalized recommendations based on content preferences
   GET ${book_catalog}/genres
 ```
 
+<img src="https://i.ibb.co/XxX0gSr/Get-All-Genres.png" alt="Get-All-Genres" width="50%" height="50%" />
 
-#### 8. Get Book By Genre
+#### 8. Get Books By Genre
 
 ```
   GET ${book_catalog}/genres/${id}
@@ -154,6 +158,8 @@ Users can also explore personalized recommendations based on content preferences
 | :------------- | :------- | :---------------------------- |
 | `id`           | `string` | **Required**. Id of genre to fetch |
 
+
+<img src="https://i.ibb.co/Kr2vwJD/Get-Books-By-Genre.png" alt="Get-Books-By-Genre" width="50%" height="50%" />
 
 #### 9. Get Books From Catalog
 
