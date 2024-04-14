@@ -1,6 +1,7 @@
 package com.major.identityservice.controller;
 
 
+import com.major.identityservice.ErrorHandling.CustomException;
 import com.major.identityservice.dto.AuthRequest;
 import com.major.identityservice.entity.UserCredential;
 import com.major.identityservice.service.AuthService;
@@ -10,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins ="*")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -30,7 +32,7 @@ public class AuthController {
         if (authenticate.isAuthenticated()) {
             return service.generateToken(authRequest.getUsername());
         } else {
-            throw new RuntimeException("invalid access");
+            throw new CustomException("invalid access");
         }
     }
 

@@ -1,6 +1,7 @@
 package com.major.identityservice.service;
 
 
+import com.major.identityservice.ErrorHandling.CustomException;
 import com.major.identityservice.entity.UserCredential;
 import com.major.identityservice.repository.UserCredentialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class AuthService {
     private JwtService jwtService;
 
     public String saveUser(UserCredential credential) {
+        if (repository.existsByName(credential.getName()) || repository.existsByEmail(credential.getEmail())) {
+            throw new CustomException("Username or email already exists");
+        }
         credential.setPassword(passwordEncoder.encode(credential.getPassword()));
         repository.save(credential);
         return "user added to the system";
@@ -31,6 +35,5 @@ public class AuthService {
     public void validateToken(String token) {
         jwtService.validateToken(token);
     }
-
 
 }
