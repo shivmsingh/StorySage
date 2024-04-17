@@ -7,6 +7,8 @@ import com.major.bookcatalog.Model.*;
 import com.major.bookcatalog.Service.BookService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +35,8 @@ public class BookCatalogController {
             @PathVariable Long id) {
         return bookCatalogService.getBooksByUsernameAndBookId(username,id);
     }
+
+
 
     @GetMapping("/genres")
     public List<Genre> getAllGenres() {
@@ -63,15 +67,17 @@ public class BookCatalogController {
     }
 
     @PostMapping("/my-books")
-    public void addUserBook(
+    public ResponseEntity<Void> addUserBook(
             HttpServletRequest request, @RequestBody UserBookRequest userBookRequest) {
         String username = request.getHeader("username");
         userBookRequest.setUsername(username);
         bookCatalogService.addUserBook(userBookRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+
     @GetMapping("/my-books")
-    public List<UserBooks> getUserBookCatalog(
+    public List<AllBooks> getUserBookCatalog(
             @RequestHeader("username") String username,
             @RequestParam(defaultValue = "20") int pageSize,
             @RequestParam(defaultValue = "0") int pageNo) {

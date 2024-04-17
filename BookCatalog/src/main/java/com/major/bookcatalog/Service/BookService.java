@@ -62,9 +62,14 @@ public class BookService {
         }
     }
 
-    public List<UserBooks> getMyBooks(String username, int page, int size){
+    public List<AllBooks> getMyBooks(String username, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return userBooksRepository.findUserBooksByUsername(username, pageable).getContent();
+        List<UserBooks> userBooks = userBooksRepository.findUserBooksByUsername(username, pageable).getContent();
+        List<AllBooks> allBooks = new ArrayList<>();
+        for (UserBooks userBook : userBooks) {
+            allBooks.add(userBook.getBook());
+        }
+        return allBooks;
     }
 
     public BookDTO getBooksByUsernameAndBookId(String username, Long id) {
@@ -146,4 +151,5 @@ public class BookService {
         Payload payload = new Payload(username,bookId,"DELETE");
         kafkaProducer.publishRecommendation(payload);
     }
+
 }
