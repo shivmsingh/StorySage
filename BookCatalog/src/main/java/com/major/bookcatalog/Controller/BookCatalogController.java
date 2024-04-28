@@ -66,6 +66,18 @@ public class BookCatalogController {
         return bookCatalogService.getBooksByAuthor(username, pageNo, pageSize, id);
     }
 
+    @GetMapping("/authors/details/{id}")
+    public Author getAuthorBio(
+            @PathVariable Long id) {
+        return bookCatalogService.getAuthorDetails(id);
+    }
+
+    @GetMapping("/genres/details/{id}")
+    public Genre getGenresBio(
+            @PathVariable Long id) {
+        return bookCatalogService.getGenreDetails(id);
+    }
+
     @PostMapping("/my-books")
     public ResponseEntity<Void> addUserBook(
             HttpServletRequest request, @RequestBody UserBookRequest userBookRequest) {

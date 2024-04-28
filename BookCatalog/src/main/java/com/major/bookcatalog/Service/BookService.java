@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -152,4 +154,21 @@ public class BookService {
         kafkaProducer.publishRecommendation(payload);
     }
 
+    public Author getAuthorDetails(Long id) {
+        Optional<Author> authorOptional = authorRepository.findById(id);
+        if (authorOptional.isPresent()) {
+            return authorOptional.get();
+        } else {
+            throw new RuntimeException("Author not found with id " + id);
+        }
+    }
+
+    public Genre getGenreDetails(Long id) {
+        Optional<Genre> genreOptional = genreRepository.findById(id);
+        if (genreOptional.isPresent()) {
+            return genreOptional.get();
+        } else {
+            throw new RuntimeException("Genre not found with id " + id);
+        }
+    }
 }
