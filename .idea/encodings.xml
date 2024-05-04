@@ -3,8 +3,12 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/BookCatalog/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gateway/gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/identity-service/identity-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/identity-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/recommendation/recommendation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/recommendation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-registry/service-registry/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-registry/src/main/java" charset="UTF-8" />
   </component>
 </project>

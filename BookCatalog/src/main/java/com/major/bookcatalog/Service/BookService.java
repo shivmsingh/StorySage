@@ -2,6 +2,7 @@ package com.major.bookcatalog.Service;
 
 import com.major.bookcatalog.Dto.BookDTO;
 import com.major.bookcatalog.Dto.UserBookRequest;
+import com.major.bookcatalog.ErrorHandling.CustomException;
 import com.major.bookcatalog.Model.*;
 import com.major.bookcatalog.RecommendationUtils.KafkaProducer;
 import com.major.bookcatalog.RecommendationUtils.Payload;
@@ -15,10 +16,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.text.DecimalFormat;
+import java.util.*;
 
 
 @Service
@@ -48,21 +47,97 @@ public class BookService {
     }
 
 
-    public void addUserBook(UserBookRequest request) {
+    public  UserBooks addUserBook(UserBookRequest request) {
         AllBooks allBooks = allBooksRepository.findById(request.getBookId()).orElse(null);
+
+
         if (allBooks != null) {
+
+            // For Updating the Status
+            if(request.getTotalPages() == request.getPagesRead()){
+                request.setStatus("COMPLETED");
+            }
+
+            if(Objects.equals(request.getStatus(), "Pending")){
+                request.setPagesRead(0);
+            }
+
+            // Saving the user book details
             UserBooks userBook = new UserBooks();
             userBook.setBook(allBooks);
             userBook.setUsername(request.getUsername());
             userBook.setTotalPages(request.getTotalPages());
             userBook.setPagesRead(request.getPagesRead());
             userBook.setStatus(request.getStatus());
+            userBook.setStars(request.getStars());
 
-            userBooksRepository.save(userBook);
+            // For updating the Stars
+            allBooks.setNumRating(allBooks.getNumRating() + 1);
+            double rating = (allBooks.getRating() * allBooks.getNumRating() + request.getStars()) / allBooks.getNumRating();
+            DecimalFormat df = new DecimalFormat("#.##");
+            rating = Double.parseDouble(df.format(rating));
+            allBooks.setRating(rating);
+
+            // For Kafka Topic
             Payload payload = new Payload(request.getUsername(),request.getBookId(),"SAVE");
-            kafkaProducer.publishRecommendation(payload);
+
+            try {
+                userBooksRepository.save(userBook);
+                allBooksRepository.save(allBooks);
+                kafkaProducer.publishRecommendation(payload);
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new CustomException(e.getMessage());
+            }
+
+            return userBook;
+        }   else{
+            return null;
         }
     }
+
+    public void updateUserBook(UserBookRequest request) {
+        AllBooks allBooks = allBooksRepository.findById(request.getBookId()).orElse(null);
+
+        if (allBooks != null) {
+            // For Updating the Status
+            if (request.getTotalPages() == request.getPagesRead()) {
+                request.setStatus("COMPLETED");
+            }
+
+            if (Objects.equals(request.getStatus(), "Pending")) {
+                request.setPagesRead(0);
+            }
+
+            // Saving the user book details
+            UserBooks userBook = new UserBooks();
+            userBook.setBook(allBooks);
+            userBook.setUsername(request.getUsername());
+            userBook.setTotalPages(request.getTotalPages());
+            userBook.setPagesRead(request.getPagesRead());
+            userBook.setStatus(request.getStatus());
+            userBook.setStars(request.getStars());
+
+            // For updating the Stars
+            double rating = (allBooks.getRating() * allBooks.getNumRating() + request.getStars()) / allBooks.getNumRating();
+            DecimalFormat df = new DecimalFormat("#.##");
+            rating = Double.parseDouble(df.format(rating));
+            allBooks.setRating(rating);
+
+            UserBooks updatedBook;
+            try {
+                userBooksRepository.updateUserBook(userBook.getUsername(), request.getBookId(), userBook.getTotalPages(), userBook.getPagesRead(), userBook.getStatus(), userBook.getStars());
+                allBooksRepository.save(allBooks);
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new CustomException(e.getMessage());
+            }
+
+
+        }
+    }
+
+
 
     public List<AllBooks> getMyBooks(String username, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
@@ -170,5 +245,20 @@ public class BookService {
         } else {
             throw new RuntimeException("Genre not found with id " + id);
         }
+    }
+
+
+    public List<BookDTO> getBooksByUsernameAndTitle(String username, String title, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        List<AllBooks> allBooksPage = allBooksRepository.findAllBooksByTitleContainingIgnoreCase(title, pageable);
+        List<BookDTO> bookDTOs = new ArrayList<>();
+        log.info("Inside getBooksByUsername");
+        for (AllBooks book : allBooksPage) {
+            BookDTO bookDTO = bookMapper.toBookDTO(book, username);
+            bookDTOs.add(bookDTO);
+        }
+
+        return bookDTOs;
+
     }
 }

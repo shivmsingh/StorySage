@@ -16,4 +16,6 @@ public interface AllBooksRepository extends JpaRepository<AllBooks, Long> {
 
     @Query("SELECT b FROM AllBooks b JOIN b.genres g WHERE g.id = :genreId")
     List<AllBooks> findByGenreId(@Param("genreId") Long genreId, Pageable pageable);
+
+    List<AllBooks> findAllBooksByTitleContainingIgnoreCase(String title, Pageable page);
 }

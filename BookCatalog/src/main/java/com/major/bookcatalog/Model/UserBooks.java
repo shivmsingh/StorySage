@@ -32,10 +32,11 @@ public class UserBooks {
     private double progress;
 
 
-
     @Column(name = "status")
     private String status;
 
+    @Column
+    private Double stars;
     // Constructor without id and progress
     public UserBooks(String username, AllBooks book, int totalPages, int pagesRead, String status) {
         this.username = username;

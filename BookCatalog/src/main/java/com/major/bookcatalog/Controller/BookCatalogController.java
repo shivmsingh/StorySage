@@ -3,6 +3,7 @@ package com.major.bookcatalog.Controller;
 
 import com.major.bookcatalog.Dto.BookDTO;
 import com.major.bookcatalog.Dto.UserBookRequest;
+import com.major.bookcatalog.ErrorHandling.BadRequestException;
 import com.major.bookcatalog.Model.*;
 import com.major.bookcatalog.Service.BookService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,6 +35,15 @@ public class BookCatalogController {
             @RequestHeader("username") String username,
             @PathVariable Long id) {
         return bookCatalogService.getBooksByUsernameAndBookId(username,id);
+    }
+
+    @GetMapping("/user-books/book/title/{title}")
+    public List<BookDTO> getBooksByTitle(
+            @RequestHeader("username") String username,
+            @PathVariable String title,
+            @RequestParam(defaultValue = "20") int pageSize,
+            @RequestParam(defaultValue = "0") int pageNo) {
+        return bookCatalogService.getBooksByUsernameAndTitle(username,title, pageNo, pageSize);
     }
 
 
@@ -79,13 +89,47 @@ public class BookCatalogController {
     }
 
     @PostMapping("/my-books")
-    public ResponseEntity<Void> addUserBook(
+    public ResponseEntity<UserBooks> addUserBook(
             HttpServletRequest request, @RequestBody UserBookRequest userBookRequest) {
+
+        if(userBookRequest.getPagesRead() < 0 || userBookRequest.getTotalPages() < 0) {
+            throw new BadRequestException("Page number and total number must be greater than 0");
+        }
+
+        if(userBookRequest.getPagesRead() > userBookRequest.getTotalPages()){
+            throw new BadRequestException("Pages Read cannot be greater than Total Pages");
+        }
+
         String username = request.getHeader("username");
         userBookRequest.setUsername(username);
-        bookCatalogService.addUserBook(userBookRequest);
+        UserBooks userBook = bookCatalogService.addUserBook(userBookRequest);
+        if (userBook != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(userBook);
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PutMapping("/my-books/{bookId}")
+    public ResponseEntity<Void> updateUserBook(
+            HttpServletRequest request, @RequestBody UserBookRequest userBookRequest, @PathVariable Long bookId) {
+
+        String username = request.getHeader("username");
+        userBookRequest.setUsername(username);
+        userBookRequest.setBookId(bookId);
+
+        if (userBookRequest.getPagesRead() < 0 || userBookRequest.getTotalPages() < 0) {
+            throw new BadRequestException("Page number and total number must be greater than 0");
+        }
+
+        if (userBookRequest.getPagesRead() > userBookRequest.getTotalPages()) {
+            throw new BadRequestException("Pages Read cannot be greater than Total Pages");
+        }
+
+        bookCatalogService.updateUserBook(userBookRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
 
 
     @GetMapping("/my-books")

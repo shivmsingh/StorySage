@@ -9,8 +9,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="recommendation" />
         <module name="identity-service" />
-        <module name="gateway" />
         <module name="service-registry" />
+        <module name="gateway" />
         <module name="BookCatalog" />
       </profile>
     </annotationProcessing>

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/BookCatalog/BookCatalog.iml" filepath="$PROJECT_DIR$/BookCatalog/BookCatalog.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/MajorCode.iml" filepath="$PROJECT_DIR$/.idea/MajorCode.iml" />
     </modules>
   </component>
