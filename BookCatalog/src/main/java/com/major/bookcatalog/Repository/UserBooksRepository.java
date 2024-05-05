@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 
 
 @Repository
@@ -17,6 +18,8 @@ public interface UserBooksRepository extends JpaRepository<UserBooks, Long> {
     Page<UserBooks> findUserBooksByUsername(String username, Pageable page);
     UserBooks findByUsernameAndBook_BookId(String username, Long bookId);
     void deleteByUsernameAndBook_BookId(String username, Long bookId);
+    List<UserBooks> findAllByUsernameAndStatus(String username, String status, Pageable page);
+
     @Modifying
     @Transactional
     @Query("UPDATE UserBooks u " +

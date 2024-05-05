@@ -19,8 +19,12 @@ import java.util.List;
 @RequestMapping("/bookcatalog")
 public class BookCatalogController {
 
-    @Autowired
-    private BookService bookCatalogService;
+
+    private final BookService bookCatalogService;
+
+    public BookCatalogController(BookService bookCatalogService) {
+        this.bookCatalogService = bookCatalogService;
+    }
 
     @GetMapping("/user-books")
     public List<BookDTO> getBookCatalog(
@@ -37,13 +41,22 @@ public class BookCatalogController {
         return bookCatalogService.getBooksByUsernameAndBookId(username,id);
     }
 
-    @GetMapping("/user-books/book/title/{title}")
+    @GetMapping("/user-books/books/title/{title}")
     public List<BookDTO> getBooksByTitle(
             @RequestHeader("username") String username,
             @PathVariable String title,
             @RequestParam(defaultValue = "20") int pageSize,
             @RequestParam(defaultValue = "0") int pageNo) {
         return bookCatalogService.getBooksByUsernameAndTitle(username,title, pageNo, pageSize);
+    }
+
+    @GetMapping("/my-books/books/status/{status}")
+    public List<AllBooks> getBooksByStatus(
+            @RequestHeader("username") String username,
+            @PathVariable String status,
+            @RequestParam(defaultValue = "20") int pageSize,
+            @RequestParam(defaultValue = "0") int pageNo) {
+        return bookCatalogService.getBooksByUsernameAndStatus(username,status, pageNo, pageSize);
     }
 
 

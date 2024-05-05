@@ -261,4 +261,14 @@ public class BookService {
         return bookDTOs;
 
     }
+
+    public List<AllBooks> getBooksByUsernameAndStatus(String username, String status, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        List<UserBooks> userBooks = userBooksRepository.findAllByUsernameAndStatus(username, status, pageable);
+        List<AllBooks> allBooks = new ArrayList<>();
+        for (UserBooks userBook : userBooks) {
+            allBooks.add(userBook.getBook());
+        }
+        return allBooks;
+    }
 }
