@@ -1,5 +1,6 @@
 package com.major.bookcatalog.Service;
 
+import com.major.bookcatalog.Dto.AllBooksDTO;
 import com.major.bookcatalog.Dto.BookDTO;
 import com.major.bookcatalog.Dto.UserBookRequest;
 import com.major.bookcatalog.ErrorHandling.CustomException;
@@ -54,12 +55,13 @@ public class BookService {
         if (allBooks != null) {
 
             // For Updating the Status
-            if(request.getTotalPages() == request.getPagesRead()){
+            if (request.getTotalPages() != 0 && request.getTotalPages() == request.getPagesRead()) {
                 request.setStatus("COMPLETED");
             }
 
-            if(Objects.equals(request.getStatus(), "Pending")){
+            if (Objects.equals(request.getStatus(), "Want to read")) {
                 request.setPagesRead(0);
+                request.setTotalPages(0);
             }
 
             // Saving the user book details
@@ -101,12 +103,13 @@ public class BookService {
 
         if (allBooks != null) {
             // For Updating the Status
-            if (request.getTotalPages() == request.getPagesRead()) {
+            if (request.getTotalPages() != 0 && request.getTotalPages() == request.getPagesRead()) {
                 request.setStatus("COMPLETED");
             }
 
-            if (Objects.equals(request.getStatus(), "Pending")) {
+            if (Objects.equals(request.getStatus(), "Want to read")) {
                 request.setPagesRead(0);
+                request.setTotalPages(0);
             }
 
             // Saving the user book details
@@ -117,7 +120,9 @@ public class BookService {
             userBook.setPagesRead(request.getPagesRead());
             userBook.setStatus(request.getStatus());
             userBook.setStars(request.getStars());
-
+            if(request.getTotalPages() != 0){
+                userBook.setProgress((double) (request.getPagesRead() * 100) / request.getTotalPages());
+            }
             // For updating the Stars
             double rating = (allBooks.getRating() * allBooks.getNumRating() + request.getStars()) / allBooks.getNumRating();
             DecimalFormat df = new DecimalFormat("#.##");
@@ -126,7 +131,7 @@ public class BookService {
 
             UserBooks updatedBook;
             try {
-                userBooksRepository.updateUserBook(userBook.getUsername(), request.getBookId(), userBook.getTotalPages(), userBook.getPagesRead(), userBook.getStatus(), userBook.getStars());
+                userBooksRepository.updateUserBook(userBook.getUsername(), request.getBookId(), userBook.getTotalPages(), userBook.getPagesRead(), userBook.getStatus(), userBook.getStars(), userBook.getProgress());
                 allBooksRepository.save(allBooks);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -137,17 +142,35 @@ public class BookService {
         }
     }
 
+    private static AllBooksDTO getAllBooksDTO(UserBooks userBook) {
+        AllBooksDTO allBooksDTO = new AllBooksDTO();
+        allBooksDTO.setBookId(userBook.getBook().getBookId());
+        allBooksDTO.setAuthors(userBook.getBook().getAuthors());
+        allBooksDTO.setTitle(userBook.getBook().getTitle());
+        allBooksDTO.setGenres(userBook.getBook().getGenres());
+        allBooksDTO.setRating(userBook.getBook().getRating());
+        allBooksDTO.setCoverImg(userBook.getBook().getCoverImg());
+        allBooksDTO.setPagesRead(userBook.getPagesRead());
+        allBooksDTO.setTotalPages(userBook.getTotalPages());
+        allBooksDTO.setStars(userBook.getStars());
+        allBooksDTO.setProgress(userBook.getProgress());
+        allBooksDTO.setStatus(userBook.getStatus());
+        return allBooksDTO;
+    }
 
 
-    public List<AllBooks> getMyBooks(String username, int page, int size) {
+    public List<AllBooksDTO> getMyBooks(String username, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         List<UserBooks> userBooks = userBooksRepository.findUserBooksByUsername(username, pageable).getContent();
-        List<AllBooks> allBooks = new ArrayList<>();
+        List<AllBooksDTO> allBooks = new ArrayList<>();
         for (UserBooks userBook : userBooks) {
-            allBooks.add(userBook.getBook());
+            AllBooksDTO allBooksDTO = getAllBooksDTO(userBook);
+            allBooks.add(allBooksDTO);
         }
         return allBooks;
     }
+
+
 
     public BookDTO getBooksByUsernameAndBookId(String username, Long id) {
         Optional<AllBooks> book = allBooksRepository.findById(id);
@@ -262,13 +285,4 @@ public class BookService {
 
     }
 
-    public List<AllBooks> getBooksByUsernameAndStatus(String username, String status, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        List<UserBooks> userBooks = userBooksRepository.findAllByUsernameAndStatus(username, status, pageable);
-        List<AllBooks> allBooks = new ArrayList<>();
-        for (UserBooks userBook : userBooks) {
-            allBooks.add(userBook.getBook());
-        }
-        return allBooks;
-    }
 }

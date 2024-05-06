@@ -2,30 +2,27 @@ package com.major.bookcatalog.Dto;
 
 import com.major.bookcatalog.Model.Author;
 import com.major.bookcatalog.Model.Genre;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+
 @Data
-public class BookDTO {
+@AllArgsConstructor
+@NoArgsConstructor
+public class AllBooksDTO {
     private Long bookId;
     private String title;
-    private String series;
-    private List<Author> authors;
     private Double rating;
-    private String description;
-    private String language;
+    private List<Author> authors;
     private List<Genre> genres;
-    private List<String> characters;
-    private String publisher;
-    private List<String> awards;
-    private Long numRating;
-    private Integer likedPercent;
-    private List<String> setting;
     private String coverImg;
-    private String status;
     private int totalPages;
     private int pagesRead;
     private double progress;
-    private double stars;
+    private String status;
+    private Double stars;
+
 }

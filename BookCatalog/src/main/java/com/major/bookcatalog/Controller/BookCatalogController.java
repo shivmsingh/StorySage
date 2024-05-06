@@ -1,6 +1,7 @@
 package com.major.bookcatalog.Controller;
 
 
+import com.major.bookcatalog.Dto.AllBooksDTO;
 import com.major.bookcatalog.Dto.BookDTO;
 import com.major.bookcatalog.Dto.UserBookRequest;
 import com.major.bookcatalog.ErrorHandling.BadRequestException;
@@ -49,16 +50,6 @@ public class BookCatalogController {
             @RequestParam(defaultValue = "0") int pageNo) {
         return bookCatalogService.getBooksByUsernameAndTitle(username,title, pageNo, pageSize);
     }
-
-    @GetMapping("/my-books/books/status/{status}")
-    public List<AllBooks> getBooksByStatus(
-            @RequestHeader("username") String username,
-            @PathVariable String status,
-            @RequestParam(defaultValue = "20") int pageSize,
-            @RequestParam(defaultValue = "0") int pageNo) {
-        return bookCatalogService.getBooksByUsernameAndStatus(username,status, pageNo, pageSize);
-    }
-
 
 
     @GetMapping("/genres")
@@ -146,7 +137,7 @@ public class BookCatalogController {
 
 
     @GetMapping("/my-books")
-    public List<AllBooks> getUserBookCatalog(
+    public List<AllBooksDTO> getUserBookCatalog(
             @RequestHeader("username") String username,
             @RequestParam(defaultValue = "20") int pageSize,
             @RequestParam(defaultValue = "0") int pageNo) {

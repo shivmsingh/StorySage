@@ -24,9 +24,9 @@ public interface UserBooksRepository extends JpaRepository<UserBooks, Long> {
     @Transactional
     @Query("UPDATE UserBooks u " +
             "SET u.totalPages = :totalPages, u.pagesRead = :pagesRead, " +
-            "u.status = :status, u.stars = :stars " +
+            "u.status = :status, u.stars = :stars, u.progress = :progress " +
             "WHERE u.username = :username AND u.book.bookId = :bookId")
     void updateUserBook(@Param("username") String username, @Param("bookId") Long bookId,
                              @Param("totalPages") int totalPages, @Param("pagesRead") int pagesRead,
-                             @Param("status") String status, @Param("stars") double stars);
+                             @Param("status") String status, @Param("stars") double stars,@Param("progress") double progress);
 }

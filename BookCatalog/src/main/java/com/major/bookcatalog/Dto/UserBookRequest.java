@@ -8,6 +8,6 @@ public class UserBookRequest {
     private Long bookId;
     private int totalPages = 0;
     private int pagesRead = 0;
-    private String status = "Pending";
+    private String status = "Want to read";
     private Double stars = 0.0;
 }
